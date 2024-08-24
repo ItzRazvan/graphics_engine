@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#define WIDTH 800
+#define WIDTH 600
 #define HEIGHT 600
 
 const char* vertexShaderSource = "#version 330 core\n"
@@ -16,7 +16,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"	FragColor = vec4(0.8f, 0.3f, 0.02f, 1.0f);\n"
+"	FragColor = vec4(1.0f, 0.3f, 0.02f, 1.0f);\n"
 "}\n\0";
 
 void error_callback(int error, const char* description){
@@ -40,8 +40,13 @@ int main(){
 
     GLfloat verteses[] ={
         -0.5f, 0.5f, 0.0f,
-        0.0f, -0.5f, 0.0f,
-        0.5f, 0.5f, 0.0f
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f,0.0f,
+
+
+        -0.5f,0.5f,0.0f,
+        0.5f,0.5f,0.0f,
+        0.5f,-0.5f,0.0f
     };
 
 
@@ -94,11 +99,6 @@ int main(){
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-
-
-    glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glfwSwapBuffers(window);
   
 
     while(!glfwWindowShouldClose(window)){
@@ -108,7 +108,7 @@ int main(){
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
